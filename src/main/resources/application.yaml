@@ -2,7 +2,7 @@ spring:
   application:
     name: coupon
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:5432/coupon}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/coupon}
     username: ${SPRING_DATASOURCE_USERNAME:coupon}
     password: ${SPRING_DATASOURCE_PASSWORD:coupon}
   jpa:
