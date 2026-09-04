@@ -85,4 +85,13 @@ public class Issuance {
     public LocalDateTime getUsedAt() {
         return usedAt;
     }
+
+    public boolean isExpired(LocalDateTime now) {
+        return !now.isBefore(expiresAt);
+    }
+
+    public void markUsed(LocalDateTime now) {
+        this.status = IssuanceStatus.USED;
+        this.usedAt = now;
+    }
 }
