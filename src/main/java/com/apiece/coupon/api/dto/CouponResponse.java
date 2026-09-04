@@ -38,4 +38,32 @@ public class CouponResponse {
         );
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public int getValidityDays() {
+        return validityDays;
+    }
+
+    public int getIssuedQuantity() {
+        return issuedQuantity;
+    }
+
+    public LocalDateTime getStartsAt() {
+        return startsAt;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
 }

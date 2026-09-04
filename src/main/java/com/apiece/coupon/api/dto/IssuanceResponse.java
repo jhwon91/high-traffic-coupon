@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class IssuanceResponse {
 
+
     private final long id;
     private final long userId;
     private final long couponId;
@@ -33,4 +34,29 @@ public class IssuanceResponse {
                 issuance.getUsedAt()
         );
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public long getCouponId() {
+        return couponId;
+    }
+
+    public LocalDateTime getIssuedAt() {
+        return issuedAt;
+    }
+
+    public LocalDateTime getExpiresAt() {
+        return expiresAt;
+    }
+
+    public LocalDateTime getUsedAt() {
+        return usedAt;
+    }
+
 }

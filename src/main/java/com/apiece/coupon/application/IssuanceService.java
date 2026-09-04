@@ -33,7 +33,7 @@ public class IssuanceService {
         }
 
         LocalDateTime now = LocalDateTime.now();
-        if (!issuance.isExpired(now)) {
+        if (issuance.isExpired(now)) {
             throw new ExpiredException();
         }
 

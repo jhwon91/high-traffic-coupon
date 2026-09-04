@@ -20,7 +20,7 @@ public class UserIssuanceController {
     }
 
     @GetMapping
-    public List<IssuanceResponse> listMine (@RequestHeader("X-User_Id") Long userId) {
+    public List<IssuanceResponse> listMine (@RequestHeader("X-User-Id") Long userId) {
         return issuanceService.findByUser(userId).stream()
                 .map(IssuanceResponse::from)
                 .toList();
