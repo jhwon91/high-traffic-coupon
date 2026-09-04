@@ -13,4 +13,11 @@ public abstract class DomainException extends RuntimeException{
     }
 
 
+    public String getCode() {
+        return code;
+    }
+
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
+    }
 }
