@@ -46,6 +46,6 @@ public class CouponIssuer {
     }
 
     private String stockKey(Long couponId) {
-        return "coupon:" + couponId + ":sock";
+        return "coupon:" + couponId + ":stock";
     }
 }
