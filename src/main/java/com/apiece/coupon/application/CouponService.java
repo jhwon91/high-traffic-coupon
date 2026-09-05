@@ -36,7 +36,10 @@ public class CouponService {
 
     @Transactional
     public Issuance issue(Long couponId, Long userId){
-        Coupon coupon = couponRepository.findById(couponId)
+//        Coupon coupon = couponRepository.findById(couponId)
+//                .orElseThrow(CouponNotFoundException::new);
+        // 비관적 락 적용
+        Coupon coupon = couponRepository.findByIdForUpdate(couponId)
                 .orElseThrow(CouponNotFoundException::new);
 
         LocalDateTime now = LocalDateTime.now();
