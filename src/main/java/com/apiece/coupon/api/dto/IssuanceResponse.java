@@ -26,7 +26,7 @@ public class IssuanceResponse {
 
     public static IssuanceResponse from (Issuance issuance){
         return new IssuanceResponse(
-                Objects.requireNonNull(issuance.getId()),
+                issuance.getId(),
                 issuance.getUserId(),
                 issuance.getCouponId(),
                 issuance.getIssuedAt(),
