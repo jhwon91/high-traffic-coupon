@@ -2,6 +2,7 @@ package com.apiece.coupon.application;
 
 import com.apiece.coupon.api.dto.CreateCouponRequest;
 import com.apiece.coupon.domain.*;
+import com.apiece.coupon.infrastructure.messaging.IssuanceRequestProducer;
 import com.apiece.coupon.infrastructure.messaging.IssuanceRequested;
 import com.apiece.coupon.support.CouponNotFoundException;
 import com.apiece.coupon.support.NotStartedException;
@@ -17,12 +18,12 @@ public class CouponService {
 
     private final CouponRepository couponRepository;
     private final CouponIssuer couponIssuer;
-    private final ApplicationEventPublisher eventPublisher;
+    private final IssuanceRequestProducer issuanceRequestProducer;
 
-    public CouponService(CouponRepository couponRepository, CouponIssuer couponIssuer, ApplicationEventPublisher eventPublisher) {
+    public CouponService(CouponRepository couponRepository, CouponIssuer couponIssuer, IssuanceRequestProducer issuanceRequestProducer) {
         this.couponRepository = couponRepository;
         this.couponIssuer = couponIssuer;
-        this.eventPublisher = eventPublisher;
+        this.issuanceRequestProducer = issuanceRequestProducer;
     }
 
     @Transactional
@@ -53,7 +54,7 @@ public class CouponService {
         couponIssuer.tryIssue(couponId, userId);
 
         LocalDateTime expiresAt = now.plusDays(Long.valueOf(coupon.getValidityDays()));
-        eventPublisher.publishEvent(
+        issuanceRequestProducer.publish(
                 new IssuanceRequested(couponId,userId,now,expiresAt)
         );
         return new Issuance(userId, couponId, now, expiresAt);
